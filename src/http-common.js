@@ -1,8 +1,7 @@
 import axios from "axios";
 export default axios.create({
-  baseURL: "https://cors-anywhere.herokuapp.com/http://spring-demo-jpa-dev.us-east-1.elasticbeanstalk.com/api",
+  baseURL: "https://d4xw46zvf5.execute-api.us-east-1.amazonaws.com",
   headers: {
-    "Content-type": "application/json",
-    "X-Requested-With": "XMLHttpRequest"
+    "Content-type": "application/json"
   }
 });
