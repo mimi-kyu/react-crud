@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "86ab0ced2726696182de",
+    "revision": "6642bb6be10eefb596bb",
     "url": "/react-crud/static/css/main.235cfd04.chunk.css"
   },
   {
-    "revision": "86ab0ced2726696182de",
-    "url": "/react-crud/static/js/main.86ab0ced.chunk.js"
+    "revision": "6642bb6be10eefb596bb",
+    "url": "/react-crud/static/js/main.6642bb6b.chunk.js"
   },
   {
     "revision": "ce47ab81b35290e2776b",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/react-crud/static/js/runtime~main.16c41700.js"
   },
   {
-    "revision": "702a3926d55559c64ed73c8e565717b7",
+    "revision": "95a8efb1321fe9c8e6faef39165bc332",
     "url": "/react-crud/index.html"
   }
 ];
