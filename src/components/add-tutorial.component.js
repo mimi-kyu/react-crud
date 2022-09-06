@@ -3,11 +3,11 @@ import TutorialDataService from "../services/tutorial.service";
 export default class AddTutorial extends Component {
   constructor(props) {
     super(props);
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeUrl = this.onChangeUrl.bind(this);
-    this.onChangeGithub = this.onChangeGithub.bind(this);
-    this.saveTutorial = this.saveTutorial.bind(this);
-    this.newTutorial = this.newTutorial.bind(this);
+    //this.onChangeTitle = this.onChangeTitle.bind(this);
+    //this.onChangeUrl = this.onChangeUrl.bind(this);
+    //this.onChangeGithub = this.onChangeGithub.bind(this);
+    //this.saveTutorial = this.saveTutorial.bind(this);
+    //this.newTutorial = this.newTutorial.bind(this);
     this.state = {
       id: null,
       title: "",
@@ -17,22 +17,22 @@ export default class AddTutorial extends Component {
       submitted: false
     };
   }
-  onChangeTitle(e) {
+  onChangeTitle = (e) => {
     this.setState({
       title: e.target.value
     });
   }
-  onChangeUrl(e) {
+  onChangeUrl = (e) => {
     this.setState({
       url: e.target.value
     });
   }
-  onChangeGithub(e) {
+  onChangeGithub = (e) => {
     this.setState({
       github: e.target.value
     });
   }
-  saveTutorial() {
+  saveTutorial = () => {
     var data = {
       title: this.state.title,
       url: this.state.url,
@@ -54,7 +54,8 @@ export default class AddTutorial extends Component {
         console.log(e);
       });
   }
-  newTutorial() {
+
+  newTutorial = () => {
     this.setState({
       id: null,
       title: "",
@@ -78,7 +79,7 @@ export default class AddTutorial extends Component {
           <div>
             <div className="mb-3 row">
               <label className="col-sm-2 col-form-label" htmlFor="title">Title</label>
-              <div class="col-sm-10">
+              <div className="col-sm-10">
                 <input
                   type="text"
                   className="form-control"
@@ -92,7 +93,7 @@ export default class AddTutorial extends Component {
             </div>
             <div className="mb-3 row">
               <label className="col-sm-2 col-form-label" htmlFor="url">URL</label>
-              <div class="col-sm-10">
+              <div className="col-sm-10">
                 <input
                   type="text"
                   className="form-control"
@@ -106,7 +107,7 @@ export default class AddTutorial extends Component {
             </div>
             <div className="mb-3 row">
               <label className="col-sm-2 col-form-label" htmlFor="github">GitHub</label>
-              <div class="col-sm-10">
+              <div className="col-sm-10">
                 <input
                   type="text"
                   className="form-control"

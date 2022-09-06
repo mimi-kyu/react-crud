@@ -3,14 +3,14 @@ import TutorialDataService from "../services/tutorial.service";
 export default class Tutorial extends Component {
   constructor(props) {
     super(props);
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeUrl = this.onChangeUrl.bind(this);
-    this.onChangeGithub = this.onChangeGithub.bind(this);
+    //this.onChangeTitle = this.onChangeTitle.bind(this);
+    //this.onChangeUrl = this.onChangeUrl.bind(this);
+    //this.onChangeGithub = this.onChangeGithub.bind(this);
     //this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.getTutorial = this.getTutorial.bind(this);
-    this.updatePublished = this.updatePublished.bind(this);
-    this.updateTutorial = this.updateTutorial.bind(this);
-    this.deleteTutorial = this.deleteTutorial.bind(this);
+    //this.getTutorial = this.getTutorial.bind(this);
+    //this.updatePublished = this.updatePublished.bind(this);
+    //this.updateTutorial = this.updateTutorial.bind(this);
+    //this.deleteTutorial = this.deleteTutorial.bind(this);
     this.state = {
       currentTutorial: {
         id: null,
@@ -22,22 +22,24 @@ export default class Tutorial extends Component {
       message: ""
     };
   }
+
   componentDidMount() {
     this.getTutorial(this.props.params.id);
   }
-  onChangeTitle(e) {
+
+  onChangeTitle = (e) => {
     this.onChangeDescription(e, "title");
   }
 
-  onChangeUrl(e) {
+  onChangeUrl = (e) => {
     this.onChangeDescription(e, "url");
   }
 
-  onChangeGithub(e) {
+  onChangeGithub = (e) => {
     this.onChangeDescription(e, "github");
   }
 
-  onChangeDescription(e, propertyToSet) {
+  onChangeDescription = (e, propertyToSet) => {
 
     const description = e.target.value;
     this.setState(prevState => ({
@@ -47,7 +49,7 @@ export default class Tutorial extends Component {
       }
     }));
   }
-  getTutorial(id) {
+  getTutorial = (id) => {
     TutorialDataService.get(id)
       .then(response => {
         this.setState({
@@ -59,7 +61,7 @@ export default class Tutorial extends Component {
         console.log(e);
       });
   }
-  updatePublished(status) {
+  updatePublished = (status) => {
     var data = {
       id: this.state.currentTutorial.id,
       title: this.state.currentTutorial.title,
@@ -81,7 +83,7 @@ export default class Tutorial extends Component {
         console.log(e);
       });
   }
-  updateTutorial() {
+  updateTutorial = () => {
     TutorialDataService.update(
       this.state.currentTutorial.id,
       this.state.currentTutorial
@@ -96,7 +98,7 @@ export default class Tutorial extends Component {
         console.log(e);
       });
   }
-  deleteTutorial() {
+  deleteTutorial = () => {
     TutorialDataService.delete(this.state.currentTutorial.id)
       .then(response => {
         console.log(response.data);
@@ -116,7 +118,7 @@ export default class Tutorial extends Component {
             <form>
               <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label" htmlFor="title">Title</label>
-                <div class="col-sm-10">
+                <div className="col-sm-10">
                   <input
                     type="text"
                     className="form-control"
@@ -128,7 +130,7 @@ export default class Tutorial extends Component {
               </div>
               <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label" htmlFor="url">URL</label>
-                <div class="col-sm-10">
+                <div className="col-sm-10">
                   <input
                     type="text"
                     className="form-control"
@@ -140,7 +142,7 @@ export default class Tutorial extends Component {
               </div>
               <div className="mb-3 row">
                 <label className="col-sm-2 col-form-label" htmlFor="github">GitHub</label>
-                <div class="col-sm-10">
+                <div className="col-sm-10">
                   <input
                     type="text"
                     className="form-control"
@@ -154,8 +156,8 @@ export default class Tutorial extends Component {
                 <label className="col-sm-2 col-form-label">
                   <strong>Status:</strong>
                 </label>
-                <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" value={currentTutorial.published ? "Published" : "Pending"}/>
+                <div className="col-sm-10">
+                <input type="text" readOnly class="form-control-plaintext" value={currentTutorial.published ? "Published" : "Pending"}/>
                 </div>
               </div>
             </form>
