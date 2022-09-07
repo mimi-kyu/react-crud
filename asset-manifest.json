@@ -1,7 +1,7 @@
 {
   "main.css": "/react-crud/static/css/main.0718b7e1.chunk.css",
-  "main.js": "/react-crud/static/js/main.e53f96b2.chunk.js",
-  "main.js.map": "/react-crud/static/js/main.e53f96b2.chunk.js.map",
+  "main.js": "/react-crud/static/js/main.d45fcc5f.chunk.js",
+  "main.js.map": "/react-crud/static/js/main.d45fcc5f.chunk.js.map",
   "static/js/1.877ddeaf.chunk.js": "/react-crud/static/js/1.877ddeaf.chunk.js",
   "static/js/1.877ddeaf.chunk.js.map": "/react-crud/static/js/1.877ddeaf.chunk.js.map",
   "static/css/2.4a54151a.chunk.css": "/react-crud/static/css/2.4a54151a.chunk.css",
@@ -12,6 +12,6 @@
   "static/css/main.0718b7e1.chunk.css.map": "/react-crud/static/css/main.0718b7e1.chunk.css.map",
   "static/css/2.4a54151a.chunk.css.map": "/react-crud/static/css/2.4a54151a.chunk.css.map",
   "index.html": "/react-crud/index.html",
-  "precache-manifest.2a91a8d535e24f333d0a95e908cebb8e.js": "/react-crud/precache-manifest.2a91a8d535e24f333d0a95e908cebb8e.js",
+  "precache-manifest.ce4a8b4d41bf020122839855a0d6c181.js": "/react-crud/precache-manifest.ce4a8b4d41bf020122839855a0d6c181.js",
   "service-worker.js": "/react-crud/service-worker.js"
 }
