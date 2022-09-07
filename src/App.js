@@ -34,7 +34,7 @@ class App extends Component{
       </nav>
       <div className="container mt-3">
         <Routes>
-          <Route index element={<TutorialsList />} />
+          <Route path="*" element={<TutorialsList />} />
           <Route path="/add" element={<AddTutorial />} />
           <Route path="/tutorials" element={<TutorialsList />} />
           <Route path="/tutorials/:id" element={<Wrapper />} />
