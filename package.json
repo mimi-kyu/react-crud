@@ -43,5 +43,5 @@
   "devDependencies": {
     "gh-pages": "^4.0.0"
   },
-  "homepage": "https://mimi-kyu.github.io/react-crud"
+  "homepage": "https://mimi-kyu.github.io/react-crud/"
 }
