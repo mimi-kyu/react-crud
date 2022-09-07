@@ -88,15 +88,13 @@ export default class TutorialsList extends Component {
               defaultValue={searchTitle}
               onChange={this.onChangeSearchTitle}
             />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.searchTitle}
-              >
-                Search
-              </button>
-            </div>
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={this.searchTitle}
+            >
+              Search
+            </button>
           </div>
         </div>
         <div className="col-md-6">
@@ -153,7 +151,7 @@ export default class TutorialsList extends Component {
               </div>
               <Link
                 to={"/react-crud/tutorials/" + currentTutorial.id}
-                style={{ textDecoration:'none' }}
+                style={{ textDecoration: 'none' }}
                 className="badge bg-warning text-dark"
               >
                 Edit
