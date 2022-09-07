@@ -3,14 +3,6 @@ import TutorialDataService from "../services/tutorial.service";
 export default class Tutorial extends Component {
   constructor(props) {
     super(props);
-    //this.onChangeTitle = this.onChangeTitle.bind(this);
-    //this.onChangeUrl = this.onChangeUrl.bind(this);
-    //this.onChangeGithub = this.onChangeGithub.bind(this);
-    //this.onChangeDescription = this.onChangeDescription.bind(this);
-    //this.getTutorial = this.getTutorial.bind(this);
-    //this.updatePublished = this.updatePublished.bind(this);
-    //this.updateTutorial = this.updateTutorial.bind(this);
-    //this.deleteTutorial = this.deleteTutorial.bind(this);
     this.state = {
       currentTutorial: {
         id: null,
