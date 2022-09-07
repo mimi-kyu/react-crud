@@ -152,7 +152,7 @@ export default class TutorialsList extends Component {
                 {currentTutorial.published ? "Published" : "Pending"}
               </div>
               <Link
-                to={"/tutorials/" + currentTutorial.id}
+                to={"/react-crud/tutorials/" + currentTutorial.id}
                 style={{ textDecoration:'none' }}
                 className="badge bg-warning text-dark"
               >

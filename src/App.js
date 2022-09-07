@@ -16,17 +16,17 @@ class App extends Component{
     return (
       <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/tutorials"} className="navbar-brand">
+        <Link to={"/react-crud/tutorials"} className="navbar-brand">
           Mimi's Tutorials
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/tutorials"} className="nav-link">
+            <Link to={"/react-crud/tutorials"} className="nav-link">
               Tutorials
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"/add"} className="nav-link">
+            <Link to={"/react-crud/add"} className="nav-link">
               Add
             </Link>
           </li>
@@ -34,10 +34,10 @@ class App extends Component{
       </nav>
       <div className="container mt-3">
         <Routes>
-          <Route path="/" element={<TutorialsList />} />
-          <Route path="/add" element={<AddTutorial />} />
-          <Route path="/tutorials" element={<TutorialsList />} />
-          <Route path="/tutorials/:id" element={<Wrapper />} />
+          <Route path="/react-crud" element={<TutorialsList />} />
+          <Route path="/react-crud/add" element={<AddTutorial />} />
+          <Route path="/react-crud/tutorials" element={<TutorialsList />} />
+          <Route path="/react-crud/tutorials/:id" element={<Wrapper />} />
         </Routes>
       </div>
     </div>);
