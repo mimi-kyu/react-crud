@@ -197,5 +197,5 @@ export default class Tutorial extends Component {
 
 Tutorial.propTypes = {
   params: PropTypes.object.isRequired,
-  navigate: PropTypes.func
+  navigate: PropTypes.func.isRequired
 }
