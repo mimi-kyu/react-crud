@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TutorialDataService from "../services/tutorial.service";
+import PropTypes from 'prop-types';
 export default class Tutorial extends Component {
   constructor(props) {
     super(props);
@@ -149,7 +150,7 @@ export default class Tutorial extends Component {
                   <strong>Status:</strong>
                 </label>
                 <div className="col-sm-10">
-                <input type="text" readOnly class="form-control-plaintext" value={currentTutorial.published ? "Published" : "Pending"}/>
+                <input type="text" readOnly className="form-control-plaintext" value={currentTutorial.published ? "Published" : "Pending"}/>
                 </div>
               </div>
             </form>
@@ -192,4 +193,9 @@ export default class Tutorial extends Component {
       </div>
     );
   }
+}
+
+Tutorial.propTypes = {
+  params: PropTypes.object.isRequired,
+  navigate: PropTypes.func
 }
