@@ -135,13 +135,13 @@ export default class TutorialsList extends Component {
                 <label>
                   <strong>URL:</strong>
                 </label>{" "}
-                {currentTutorial.url}
+                <a href={currentTutorial.url} target="_blank" rel="noopener noreferrer">{currentTutorial.url}</a>
               </div>
               <div>
                 <label>
                   <strong>GitHub:</strong>
                 </label>{" "}
-                {currentTutorial.github}
+                <a href={currentTutorial.github} target="_blank" rel="noopener noreferrer">{currentTutorial.github}</a>
               </div>
               <div>
                 <label>

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes , Link , Route , useParams, useNavigate} from "react-router-dom";
 import "./App.css";
 import AddTutorial from "./components/add-tutorial.component.js";
-import Tutorial from "./components/tutorial.component.js";
+import EditTutorial from "./components/edit-tutorial.component.js";
 import TutorialsList from "./components/tutorial-list.component.js";
 
 class App extends Component{
@@ -11,13 +11,13 @@ class App extends Component{
     const Wrapper = (props) => {
       const params  = useParams();
       const navigate = useNavigate();
-      return <Tutorial {...props} params={params} navigate={navigate} />
+      return <EditTutorial {...props} params={params} navigate={navigate} />
     }
     return (
       <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/react-crud/tutorials"} className="navbar-brand">
-          Mimi's Tutorials
+          Mimi's Tutorial App
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">

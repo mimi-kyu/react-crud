@@ -1,48 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 import TutorialDataService from "../services/tutorial.service";
-export default class AddTutorial extends Component {
+import Tutorial from "./tutorial.component";
+export default class AddTutorial extends Tutorial {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
-      title: "",
-      url: "",
-      github: "",
-      published: false,
       submitted: false
     };
   }
-  onChangeTitle = (e) => {
-    this.setState({
-      title: e.target.value
-    });
-  }
-  onChangeUrl = (e) => {
-    this.setState({
-      url: e.target.value
-    });
-  }
-  onChangeGithub = (e) => {
-    this.setState({
-      github: e.target.value
-    });
-  }
+  
   saveTutorial = () => {
     var data = {
-      title: this.state.title,
-      url: this.state.url,
-      github: this.state.github
+      ...this.state.currentTutorial
     };
     TutorialDataService.create(data)
       .then(response => {
-        this.setState({
-          id: response.data.id,
-          title: response.data.title,
-          url: response.data.url,
-          github: response.data.github,
-          published: response.data.published,
-          submitted: true
-        });
+        this.setState({ currentTutorial: {
+          ...response.data
+        },
+        submitted: true});
         console.log(response.data);
       })
       .catch(e => {
@@ -51,15 +27,16 @@ export default class AddTutorial extends Component {
   }
 
   newTutorial = () => {
-    this.setState({
+    this.setState({ currentTutorial: {
       id: null,
       title: "",
       url: "",
       github: "",
-      published: false,
+      published: false },
       submitted: false
     });
   }
+
   render() {
     return (
       <div className="submit-form">
