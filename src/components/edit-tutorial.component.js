@@ -29,10 +29,7 @@ export default class EditTutorial extends Tutorial {
 
   updatePublished = (status) => {
     var data = {
-      id: this.state.currentTutorial.id,
-      title: this.state.currentTutorial.title,
-      url: this.state.currentTutorial.url,
-      github: this.state.currentTutorial.github,
+      ...this.state.currentTutorial,
       published: status
     };
     TutorialDataService.update(this.state.currentTutorial.id, data)
