@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/tutorial.service";
 import { Link } from "react-router-dom";
-export default class TutorialsList extends Component {
+import { connect } from "react-redux";
+import { retrieveTutorialsAction , deleteAllTutorialsAction } from "../actions/tutorial-actions"
+
+export class TutorialsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tutorials: [],
       currentTutorial: null,
       currentIndex: -1,
       searchTitle: ""
@@ -13,7 +14,7 @@ export default class TutorialsList extends Component {
   }
 
   componentDidMount() {
-    this.retrieveTutorials();
+    this.props.retrieveTutorialsAction();
   }
 
   onChangeSearchTitle = (e) => {
@@ -23,21 +24,7 @@ export default class TutorialsList extends Component {
     });
   }
 
-  retrieveTutorials = () => {
-    TutorialDataService.getAll()
-      .then(response => {
-        this.setState({
-          tutorials: response.data
-        });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
   refreshList = () => {
-    this.retrieveTutorials();
     this.setState({
       currentTutorial: null,
       currentIndex: -1
@@ -52,18 +39,22 @@ export default class TutorialsList extends Component {
   }
 
   removeAllTutorials = () => {
-    TutorialDataService.deleteAll()
+    this.props.deleteAllTutorialsAction();
+    this.refreshList();
+    /*TutorialDataService.deleteAll()
       .then(response => {
         console.log(response.data);
         this.refreshList();
       })
       .catch(e => {
         console.log(e);
-      });
+      });*/
   }
 
   searchTitle = () => {
-    TutorialDataService.findByTitle(this.state.searchTitle)
+    this.refreshList();
+    this.props.retrieveTutorialsAction(this.state.searchTitle);
+    /*TutorialDataService.findByTitle(this.state.searchTitle)
       .then(response => {
         this.setState({
           tutorials: response.data
@@ -72,11 +63,12 @@ export default class TutorialsList extends Component {
       })
       .catch(e => {
         console.log(e);
-      });
+      });*/
   }
 
   render() {
-    const { searchTitle, tutorials, currentTutorial, currentIndex } = this.state;
+    const { searchTitle, currentTutorial, currentIndex } = this.state;
+    const { tutorials } = this.props;
     return (
       <div className="list row">
         <div className="col-md-8">
@@ -168,3 +160,13 @@ export default class TutorialsList extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { tutorialReducer : tutorials } = state;
+  return { tutorials };
+}
+
+export default connect(mapStateToProps, {
+  retrieveTutorialsAction,
+  deleteAllTutorialsAction
+})(TutorialsList);

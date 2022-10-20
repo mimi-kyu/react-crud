@@ -1,8 +1,10 @@
 import React from "react";
-import TutorialDataService from "../services/tutorial.service";
 import PropTypes from 'prop-types';
 import Tutorial from "./tutorial.component";
-export default class EditTutorial extends Tutorial {
+import { connect } from "react-redux";
+import { selectTutorialById } from "../reducers/tutorials-reducer";
+import { updateTutorialAction , deleteTutorialAction } from "../actions/tutorial-actions"
+export class EditTutorial extends Tutorial {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,10 +13,13 @@ export default class EditTutorial extends Tutorial {
   }
 
   componentDidMount() {
-    this.getTutorial(this.props.params.id);
+    this.setState({
+      currentTutorial: { ...this.props.tutorial}
+    });
+    //this.getTutorial(this.props.params.id);
   }
 
-  getTutorial = (id) => {
+  /*getTutorial = (id) => {
     TutorialDataService.get(id)
       .then(response => {
         this.setState({
@@ -25,14 +30,15 @@ export default class EditTutorial extends Tutorial {
       .catch(e => {
         console.log(e);
       });
-  }
+  }*/
 
   updatePublished = (status) => {
     var data = {
       ...this.state.currentTutorial,
       published: status
     };
-    TutorialDataService.update(this.state.currentTutorial.id, data)
+    this.props.updateTutorialAction(this.state.currentTutorial.id, data);
+    /*TutorialDataService.update(this.state.currentTutorial.id, data)
       .then(response => {
         this.setState(prevState => ({
           currentTutorial: {
@@ -44,34 +50,36 @@ export default class EditTutorial extends Tutorial {
       })
       .catch(e => {
         console.log(e);
-      });
+      });*/
   }
 
   updateTutorial = () => {
-    TutorialDataService.update(
-      this.state.currentTutorial.id,
-      this.state.currentTutorial
-    )
-      .then(response => {
-        console.log(response.data);
-        this.setState({
-          message: "The tutorial was updated successfully!"
-        });
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    this.props.updateTutorialAction(this.state.currentTutorial.id, this.state.currentTutorial);
+    // TutorialDataService.update(
+    //   this.state.currentTutorial.id,
+    //   this.state.currentTutorial
+    // )
+    //   .then(response => {
+    //     console.log(response.data);
+    //     this.setState({
+    //       message: "The tutorial was updated successfully!"
+    //     });
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
   }
 
   deleteTutorial = () => {
-    TutorialDataService.delete(this.state.currentTutorial.id)
-      .then(response => {
-        console.log(response.data);
-        this.props.navigate('/react-crud/tutorials')
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    this.props.deleteTutorialAction(this.state.currentTutorial.id);
+    // TutorialDataService.delete(this.state.currentTutorial.id)
+    //   .then(response => {
+    //     console.log(response.data);
+    //     this.props.navigate('/react-crud/tutorials')
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
   }
 
   render() {
@@ -167,6 +175,16 @@ export default class EditTutorial extends Tutorial {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.params.id;
+  return { tutorial : selectTutorialById(state, id)};
+};
+
+export default connect(mapStateToProps, {
+  updateTutorialAction,
+  deleteTutorialAction
+})(EditTutorial);
 
 EditTutorial.propTypes = {
   params: PropTypes.object.isRequired,

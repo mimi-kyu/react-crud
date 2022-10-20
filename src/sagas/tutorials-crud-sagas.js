@@ -14,8 +14,8 @@ function* createTutorial(action) {
 
 function* retrieveTutorials(action) {
     try {
-        const tutorials = yield call(action.payload.title ? TutorialDataService.findByTitle(action.payload.title) :
-                                     TutorialDataService.getAll);
+        const tutorials = yield action.payload ? call(TutorialDataService.findByTitle, action.payload) :
+                                     call(TutorialDataService.getAll);
         yield put(tutorialActions.retrieveTutorialsSucceededAction(tutorials.data));
     } catch(e) {
         yield put(tutorialActions.retrieveTutorialsFailedAction(e.message));
@@ -24,7 +24,7 @@ function* retrieveTutorials(action) {
 
 function* updateTutorial(action) {
     try {
-        const tutorial = yield call(TutorialDataService.updateTutorial(action.payload.id, action.payload.data));
+        const tutorial = yield call(TutorialDataService.update, action.payload.id, action.payload.tutorial);
         yield put(tutorialActions.updateTutorialSucceededAction(tutorial.data));
     } catch(e) {
         yield put(tutorialActions.updateTutorialFailedAction(e.message));
@@ -33,7 +33,7 @@ function* updateTutorial(action) {
 
 function* deleteTutorial(action) {
     try {
-        yield call(TutorialDataService.delete(action.payload.id));
+        yield call(TutorialDataService.delete, action.payload.id);
         yield put(tutorialActions.deleteTutorialSucceededAction(action.payload.id));
     } catch(e) {
         yield put(tutorialActions.deleteTutorialFailedAction(e.message));
@@ -42,7 +42,7 @@ function* deleteTutorial(action) {
 
 function* deleteAllTutorials() {
     try {
-        yield call(TutorialDataService.deleteAll());
+        yield call(TutorialDataService.deleteAll);
         yield put(tutorialActions.deleteAllTutorialsSucceededAction());
     } catch(e) {
         yield put(tutorialActions.deleteAllTutorialsFailedAction(e.message));

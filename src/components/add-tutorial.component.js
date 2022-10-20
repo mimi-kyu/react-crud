@@ -1,7 +1,8 @@
 import React from "react";
-import TutorialDataService from "../services/tutorial.service";
 import Tutorial from "./tutorial.component";
-export default class AddTutorial extends Tutorial {
+import { connect } from 'react-redux';
+import { createTutorialAction } from "../actions/tutorial-actions";
+export class AddTutorial extends Tutorial {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,8 +14,8 @@ export default class AddTutorial extends Tutorial {
     var data = {
       ...this.state.currentTutorial
     };
-    TutorialDataService.create(data)
-      .then(response => {
+    this.props.createTutorialAction(data);
+      /*.then(response => {
         this.setState({ currentTutorial: {
           ...response.data
         },
@@ -23,7 +24,7 @@ export default class AddTutorial extends Tutorial {
       })
       .catch(e => {
         console.log(e);
-      });
+      });*/
   }
 
   newTutorial = () => {
@@ -100,3 +101,5 @@ export default class AddTutorial extends Tutorial {
     );
   }
 }
+
+export default connect(null, { createTutorialAction })(AddTutorial)
