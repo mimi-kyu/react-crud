@@ -39,6 +39,6 @@ export default tutorialReducer;
 
 export const selectTutorialById = (state, id) => {
   const tutorials = state.tutorialReducer;
-  const tutorialFound = tutorials.find(tutorial => tutorial.id = id);
+  const tutorialFound = tutorials.find(tutorial => tutorial.id === id);
   return tutorialFound;
 }

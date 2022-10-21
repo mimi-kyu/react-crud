@@ -13,12 +13,15 @@ export class EditTutorial extends Tutorial {
   }
 
   componentDidMount() {
-    this.setState({
-      currentTutorial: { ...this.props.tutorial}
-    });
+    this.updateState();
     //this.getTutorial(this.props.params.id);
   }
 
+  updateState() {
+    this.setState({
+      currentTutorial: { ...this.props.tutorial}
+    });
+  }
   /*getTutorial = (id) => {
     TutorialDataService.get(id)
       .then(response => {
@@ -38,6 +41,7 @@ export class EditTutorial extends Tutorial {
       published: status
     };
     this.props.updateTutorialAction(this.state.currentTutorial.id, data);
+    this.updateState();
     /*TutorialDataService.update(this.state.currentTutorial.id, data)
       .then(response => {
         this.setState(prevState => ({
@@ -55,6 +59,7 @@ export class EditTutorial extends Tutorial {
 
   updateTutorial = () => {
     this.props.updateTutorialAction(this.state.currentTutorial.id, this.state.currentTutorial);
+    this.updateState();
     // TutorialDataService.update(
     //   this.state.currentTutorial.id,
     //   this.state.currentTutorial
@@ -177,7 +182,7 @@ export class EditTutorial extends Tutorial {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.params.id;
+  const id = Number(ownProps.params.id);
   return { tutorial : selectTutorialById(state, id)};
 };
 
