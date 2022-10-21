@@ -17,6 +17,12 @@ export class EditTutorial extends Tutorial {
     //this.getTutorial(this.props.params.id);
   }
 
+  componentDidUpdate() {
+    if(this.props.tutorial.published !== this.state.currentTutorial.published) {
+      this.updateState();
+    }
+  }
+
   updateState() {
     this.setState({
       currentTutorial: { ...this.props.tutorial}
@@ -41,7 +47,7 @@ export class EditTutorial extends Tutorial {
       published: status
     };
     this.props.updateTutorialAction(this.state.currentTutorial.id, data);
-    this.updateState();
+    //this.updateState();
     /*TutorialDataService.update(this.state.currentTutorial.id, data)
       .then(response => {
         this.setState(prevState => ({
@@ -59,7 +65,7 @@ export class EditTutorial extends Tutorial {
 
   updateTutorial = () => {
     this.props.updateTutorialAction(this.state.currentTutorial.id, this.state.currentTutorial);
-    this.updateState();
+    //this.updateState();
     // TutorialDataService.update(
     //   this.state.currentTutorial.id,
     //   this.state.currentTutorial
