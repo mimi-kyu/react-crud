@@ -17,15 +17,15 @@ export class EditTutorial extends Tutorial {
     //this.getTutorial(this.props.params.id);
   }
 
-  componentDidUpdate() {
-    if(this.props.tutorial.published !== this.state.currentTutorial.published) {
+  componentDidUpdate(prevProps) {
+    if(prevProps.tutorial.inProgress === true && this.props.tutorial.inProgress === false) {
       this.updateState();
     }
   }
 
   updateState() {
     this.setState({
-      currentTutorial: { ...this.props.tutorial}
+      currentTutorial: { ...this.props.tutorial.data}
     });
   }
   /*getTutorial = (id) => {
@@ -189,7 +189,7 @@ export class EditTutorial extends Tutorial {
 
 const mapStateToProps = (state, ownProps) => {
   const id = Number(ownProps.params.id);
-  return { tutorial : selectTutorialById(state, id)};
+  return { tutorial : selectTutorialById(state, id) };
 };
 
 export default connect(mapStateToProps, {

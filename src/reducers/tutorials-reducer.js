@@ -7,17 +7,29 @@ function tutorialReducer(tutorials = initialState, action) {
 
   switch (type) {
     case actionTypes.CREATE_TUTORIAL_SUCCEEDED:
-      return [...tutorials, payload];
+      return [...tutorials, { data: payload, inProgress: false }];
 
     case actionTypes.RETRIEVE_TUTORIALS_SUCCEEDED:
-      return payload;
+      return payload.map((tutorial) => ({data: { ...tutorial }, inProgress: false}));
+
+    case actionTypes.UPDATE_TUTORIAL:
+      return tutorials.map((tutorial) => {
+        if (tutorial.data.id === payload.id) {
+          return {
+            data: { ...tutorial.data },
+            inProgress: true
+          };
+        } else {
+          return tutorial;
+        }
+      }); 
 
     case actionTypes.UPDATE_TUTORIAL_SUCCEEDED:
       return tutorials.map((tutorial) => {
-        if (tutorial.id === payload.id) {
+        if (tutorial.data.id === payload.id) {
           return {
-            ...tutorial,
-            ...payload,
+            data: { ...tutorial, ...payload },
+            inProgress: false
           };
         } else {
           return tutorial;
@@ -25,7 +37,7 @@ function tutorialReducer(tutorials = initialState, action) {
       });
 
     case actionTypes.DELETE_TUTORIAL_SUCCEEDED:
-      return tutorials.filter(({ id }) => id !== payload.id);
+      return tutorials.filter(({ data: {id} }) => id !== payload.id);
 
     case actionTypes.DELETE_ALL_TUTORIALS:
       return [];
@@ -39,6 +51,6 @@ export default tutorialReducer;
 
 export const selectTutorialById = (state, id) => {
   const tutorials = state.tutorialReducer;
-  const tutorialFound = tutorials.find(tutorial => tutorial.id === id);
+  const tutorialFound = tutorials.find(tutorial => tutorial.data.id === id);
   return tutorialFound;
 }

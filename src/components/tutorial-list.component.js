@@ -163,7 +163,7 @@ export class TutorialsList extends Component {
 
 const mapStateToProps = (state) => {
   const { tutorialReducer : tutorials } = state;
-  return { tutorials };
+  return { tutorials: tutorials.map(tutorial => tutorial.data) };
 }
 
 export default connect(mapStateToProps, {
